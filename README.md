@@ -40,3 +40,32 @@ claims in the analysis.
 `transactions_cleaned` — original data plus a `row_num` column
 (added via ROW_NUMBER()) to serve as a unique row identifier, since
 the source data had none.
+
+### Business Questions-
+◆ How has total funding amount changed year-over-year across 2020-2025?
+Finding: Year-over-Year Funding Growth (2021–2024, with 2025 partial-year note)
+Total startup funding showed high volatility year-over-year:
+- 2020:  $4.76B — baseline year (excluded from YoY % calculation; no prior year to compare against).
+- 2021:  $6.02B (+26.66%) — the strongest growth year in the dataset, marking a sharp rebound in funding activity.
+- 2022: $4.51B (-25.15%) — funding pulled back sharply, reversing the prior year's gain.
+- 2023: $4.00B (-11.26%) — decline continued, though at a slower pace than 2022.
+- 2024: $5.98B (+49.42%) — a strong recovery, the largest single-year swing in the dataset.
+- 2025: $2.81B — excluded from YoY trend. This figure reflects only a partial year of data and is not comparable to the full-year totals above; it is shown for reference only, not as a trend data point.
+  
+◆ Has the number of funding deals changed year-over-year, separate from the amount?
+
+ 2021 saw fewer but bigger deals. 2022–2023 saw more deals but smaller ones, pulling totals down. 2024's 49% jump came mainly from bigger deals, not more of them.
+| Year	|Count|	Total funding|	Pattern|
+-------|------|---------------|--------|
+|2021	|↓	|↑ |Fewer, bigger deals|
+|2022	|↑	|↓ |More, smaller deals|
+|2023	|↑	|↓ |More, smaller deals|
+|2024	|↑ (slight)|	↑ (large)	|Bigger deals mainly, not more of them|
+|2025 |(partial)|	(partial)	|Not comparable|
+
+◆ Data Limitation: City Attribution
+The fact: Startup city data isn't always consistent — the same startup appears with multiple different city values across rows. Among the top-funded entries, Oyo, DriveEdge, NeoLabs, and LogiMart each show up under 9 distinct cities. This is part of a broader pattern affecting 130 of 180 startups in the dataset (across various fields, not just city).
+The consequence: Because the city ranking is built with groupby('City').sum(), it trusts each row's city label as-is. A startup's funding gets split across whichever cities it was recorded under, rather than being attributed to one consistent location — so a single high-funding startup can inflate several cities' totals instead of just its "true" city.
+What to do with it: Treat the city ranking as directional/approximate, not a precise geographic breakdown. It's useful for spotting broad regional trends (e.g., which metro areas dominate funding activity), but exact rank order and totals for individual cities shouldn't be read as authoritative.
+
+
