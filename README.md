@@ -62,13 +62,13 @@ Total startup funding showed high volatility year-over-year:
 |2023	|↑	|↓ |More, smaller deals|
 |2024	|↑ (slight)|	↑ (large)	|Bigger deals mainly, not more of them|
 |2025 |(partial)|	(partial)	|Not comparable|
+## Known Limitations
 
-◆ Data Limitation: City Attribution
-- The fact: Startup city data isn't always consistent — the same startup appears with multiple different city values across rows. Among the top-funded entries, Oyo, DriveEdge, NeoLabs, and LogiMart each show up under 9 distinct cities. This is part of a broader pattern affecting 130 of 180 startups in the dataset (across various fields, not just city).
-- The consequence: Because the city ranking is built with groupby('City').sum(), it trusts each row's city label as-is. A startup's funding gets split across whichever cities it was recorded under, rather than being attributed to one consistent location — so a single high-funding startup can inflate several cities' totals instead of just its "true" city.
-- What to do with it: Treat the city ranking as directional/approximate, not a precise geographic breakdown. It's useful for spotting broad regional trends (e.g., which metro areas dominate funding activity), but exact rank order and totals for individual cities shouldn't be read as authoritative.
-
-◆ Data Limitation: Industry Attribution
-- The fact: Industry labels show the same row-level scrambling problem as City. FreshTech and DriveEdge each appear under 11 different Industry values, Porter and Bounce under 10, and several more startups show up under 9 distinct industries. This is the same underlying pattern found in the City data, just applied to a different attribute.
-- The consequence: Because groupby('Industry').sum() trusts each row's industry label as-is, a startup's funding gets split across whichever industries it was recorded under, rather than being attributed to one consistent sector. A startup that should consistently be tagged "FinTech," for example, may have its funding scattered across 8–11 different Industry labels — diluting FinTech's true total and inflating whichever labels absorbed the misattributed rows.
--  What to do with it: Treat the Industry ranking as directional/approximate, not a precise sector breakdown. In particular, any "surprising" result (e.g. FinTech or E-commerce ranking lower than expected) shouldn't be read as a real market signal — it's very plausibly an artifact of this data quality issue rather than genuine industry performance.
+- **Row-level label inconsistency**: A subset of startups (~130 of 180) have inconsistent City and/or Industry 
+  values across their funding rows — same company, different label per row. This is most severe for Industry, 
+  where some startups span 8-11 different values. Since groupby() trusts each row's label as-is, this splits 
+  a startup's funding across multiple categories instead of consolidating it under one, distorting city- and 
+  industry-level rankings (totals should be read as directional, not exact).
+- **Deal count and average deal size**: The same fragmentation inflates deal counts and understates average 
+  deal size per year — a single funding round split across multiple rows looks like several smaller deals 
+  rather than one larger one, so year-over-year average deal size should also be read as directional, not exact.
