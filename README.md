@@ -1,4 +1,19 @@
 # Indian_startup
+## Introduction
+
+This project analyzes startup funding activity in India between 2020 and 2025, 
+using a dataset of 1,100 funding transactions sourced from Kaggle. The goal is 
+to explore how funding amounts and deal activity have evolved year-over-year, 
+and to surface patterns across industries, cities, and investment stage
+
+## Tools Used
+- **BigQuery (SQL)** — data validation queries (duplicate checks, distinct-value 
+  counts, casing/whitespace checks) and creation of the `transactions_cleaned` 
+  table with a `row_num` identifier
+- **Python (pandas)** — exploratory analysis, groupby aggregations for 
+  year/industry/city-level trends
+- **Tableau** — data visualization
+
 ## Data Cleaning
 
 **Source:** Indian Startup Funding dataset (2020–2025),
@@ -72,3 +87,25 @@ Total startup funding showed high volatility year-over-year:
 - **Deal count and average deal size**: The same fragmentation inflates deal counts and understates average 
   deal size per year — a single funding round split across multiple rows looks like several smaller deals 
   rather than one larger one, so year-over-year average deal size should also be read as directional, not exact.
+
+## Data Visualization
+
+Interactive dashboards for this analysis were built in Tableau and can be 
+explored here:
+https://public.tableau.com/app/profile/arpita.gupta4384/viz/indianstartupdashboard/Dashboard1
+
+The dashboard covers:
+- **Year-over-year funding trend (2020–2025)** — total funding amount and 
+  deal count by year, highlighting the 2022–2023 pullback and 2024 rebound
+- **Industry breakdown** — funding distribution across industries (read as 
+  directional, not exact — see Known Limitations)
+- **City-wise funding** — top cities by total funding and deal count
+- **Investment type / stage analysis** — funding amounts by stage 
+  (Seed, Pre-Series A, etc.)
+
+*Note: since GitHub can't render Tableau dashboards inline, a static 
+screenshot is included below for quick reference — click through to the 
+link above for the interactive version.
+![Dashboard screenshot](https://github.com/nvmarpita/Indian_startup/blob/main/Indian_Funding_Startup.png)
+
+
