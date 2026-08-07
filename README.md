@@ -29,7 +29,7 @@ https://www.kaggle.com/datasets/vagdevititikshag/indian-startup-funding-dataset-
 - Categorical consistency: checked City, Industry, InvestmentType for
   spelling/casing/whitespace inconsistencies — none found
 - Additionally checked SubVertical (44 distinct values)  and Investors
-   (423 distinct values) by comparing CO UNT(DISTINCT column) against COUNT(DISTINCT LOWER(TRIM(column))).
+   (423 distinct values) by comparing COUNT(DISTINCT column) against COUNT(DISTINCT LOWER(TRIM(column))).
 Counts matched in both cases, confirming no casing or whitespace inconsistencies.
 
 ### Key finding: likely synthetic data
@@ -99,13 +99,13 @@ The dashboard covers:
   deal count by year, highlighting the 2022–2023 pullback and 2024 rebound
 - **Industry breakdown** — funding distribution across industries (read as 
   directional, not exact — see Known Limitations)
-- **City-wise funding** — top cities by total funding and deal count
+- **Average Deal Size by Year funding** — top cities by total funding and deal count
 - **Investment type / stage analysis** — funding amounts by stage 
   (Seed, Pre-Series A, etc.)
 
 *Note: since GitHub can't render Tableau dashboards inline, a static 
 screenshot is included below for quick reference — click through to the 
-link above for the interactive version.
+link above for the interactive version*
 ![Dashboard screenshot](https://github.com/nvmarpita/Indian_startup/blob/main/Indian_Funding_Startup.png)
 
 
