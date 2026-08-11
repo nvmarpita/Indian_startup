@@ -106,5 +106,5 @@ The dashboard covers:
 *Note: since GitHub can't render Tableau dashboards inline, a static 
 screenshot is included below for quick reference — click through to the 
 link above for the interactive version*
-![Dashboard screenshot](https://github.com/nvmarpita/Indian_startup/blob/main/Indian%20Startup%20Funding%20Dashboard.png)
+![Dashboard screenshot]()
 
