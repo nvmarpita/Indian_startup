@@ -103,8 +103,4 @@ The dashboard covers:
 - **Investment type / stage analysis** — funding amounts by stage 
   (Seed, Pre-Series A, etc.)
 
-*Note: since GitHub can't render Tableau dashboards inline, a static 
-screenshot is included below for quick reference — click through to the 
-link above for the interactive version*
-![Dashboard screenshot]()
 
